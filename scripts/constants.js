@@ -174,7 +174,7 @@ export const GROUP = {
     skillFeats: { id: 'skill-feats', name: 'PF2E.FeatSkillHeader', type: 'system' },
     generalFeats: { id: 'general-feats', name: 'PF2E.FeatGeneralHeader', type: 'system' },
     bonusFeats: { id: 'bonus-feats', name: 'PF2E.FeatBonusHeader', type: 'system' },
-    spells: { id: 'spells', name: 'PF2E.SpellLabelPlural', type: 'system' },
+    spells: { id: 'spells', name: 'PF2E.Item.Spell.Plural', type: 'system' },
     heroPoints: { id: 'hero-points', name: 'PF2E.HeroPointsLabel', type: 'system' },
     initiative: { id: 'initiative', name: 'PF2E.InitiativeLabel', type: 'system' },
     perceptionCheck: { id: 'perception-check', name: 'PF2E.PerceptionLabel', type: 'system' },
