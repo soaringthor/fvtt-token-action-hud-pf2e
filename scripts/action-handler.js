@@ -28,6 +28,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         spellActions = null
 
         mapLabel = coreModule.api.Utils.i18n('PF2E.MAPAbbreviationLabel').replace(' {penalty}', '')
+        systemVersion = coreModule.api.Utils.getModuleVersionParts(game.system.version)
 
         /**
          * Build System Actions
@@ -1295,7 +1296,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
          * Build elemental blasts
          */
         async #buildElementalBlasts () {
-            if (game.system.version < '5.4.0') return
+            if ((this.systemVersion.major < 5) || (this.systemVersion.major == 5 && this.systemVersion.minor < 4)) return
 
             const actionType = 'elementalBlast'
 
@@ -1375,7 +1376,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                         const isMap = `${roll}`.includes(this.mapLabel)
                         let modifier
                         if (isMap) {
-                            if ((game.system.version < '5.2.0')) {
+                            if ((this.systemVersion.major < 5) || (this.sytemVersion.major == 5 && this.systemVersion.minor < 2)) {
                                 modifier = coreModule.api.Utils.getModifier(blast.statistic.mod + parseInt(`${roll}`.split(' ')[1]))
                             } else {
                                 modifier = `${roll}`.split(' ')[0]
@@ -1564,7 +1565,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                             const isMap = variant.label.includes(this.mapLabel)
                             let modifier
                             if (isMap) {
-                                if ((game.system.version < '5.2.0')) {
+                                if ((this.systemVersion.major < 5) || (this.systemVersion.major == 5 && this.systemVersion.minor < 2)) {
                                     modifier = coreModule.api.Utils.getModifier(strike.totalModifier + parseInt(variant.label.split(' ')[1]))
                                 } else {
                                     modifier = variant.label.split(' ')[0]
@@ -1657,7 +1658,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             const actionType = 'toggle'
 
             // Get toggles
-            const toggles = (game.system.version.startsWith('4')) ? this.actor.system.toggles : this.actor.synthetics.toggles
+            const toggles = (this.systemVersion == 4) ? this.actor.system.toggles : this.actor.synthetics.toggles
 
             // Exit if no toggles exist
             if (!toggles.length) return
