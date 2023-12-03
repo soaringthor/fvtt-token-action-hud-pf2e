@@ -1376,7 +1376,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                         const isMap = `${roll}`.includes(this.mapLabel)
                         let modifier
                         if (isMap) {
-                            if ((this.systemVersion.major < 5) || (this.sytemVersion.major == 5 && this.systemVersion.minor < 2)) {
+                            if ((this.systemVersion.major < 5) || (this.systemVersion.major == 5 && this.systemVersion.minor < 2)) {
                                 modifier = coreModule.api.Utils.getModifier(blast.statistic.mod + parseInt(`${roll}`.split(' ')[1]))
                             } else {
                                 modifier = `${roll}`.split(' ')[0]
